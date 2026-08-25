@@ -1,36 +1,47 @@
-﻿# Red Team Bot - Zararsız Ağ Güvenlik Test Platformu
+﻿# Red Team Bot - MITRE ATT&CK Security Testing Platform
 
-##  Proje Açıklaması
+## 🎯 Proje Açıklaması
 
-Bu bot, ağ güvenlik sistemlerinin (SIEM, IDS/IPS, NDR vb.) anomali algılama yeteneğini test etmek için tasarlanmış zararsız bir Red Team simülasyon aracıdır.
+Bu bot, ağ güvenlik sistemlerinin (SIEM, IDS/IPS, NDR vb.) anomali algılama ve kural tetikleme yeteneklerini test etmek için tasarlanmış zararsız bir Red Team simülasyon aracıdır.
 
-##  Saldırı Vektörleri
+Proje, **MITRE ATT&CK Matrix for Enterprise** çerçevesiyle tam uyumlu teknikler ve simülasyonlar içerir.
 
-| # | Saldırı Türü | Açıklama |
-|---|-------------|----------|
-| 1 | Nmap SYN Tarama | Ağ keşfi ve port taraması |
-| 2 | SMB Enumerasyon | SMB servis bilgisi toplama |
-| 3 | SSH Brute Force | Başarısız oturum açma denemeleri |
-| 4 | C2 Beacon Simülasyonu | Düzenli dış bağlantı istekleri |
-| 5 | Veri Sızıntısı Simülasyonu | Dummy veri transferi |
-| 6 | Lateral Movement | Aynı kimlikle farklı host denemeleri |
-| 7 | DNS Tünelleme | Uzun subdomain sorguları |
-| 8 | ARP Keşif | Pasif ARP tarama |
-| 9 | ICMP Flood (Hafif) | Düşük hacimli ping flood |
-| 10 | Web App Tarama | Güvenlik payload testleri |
+---
 
-##  Kurulum
+## 🚀 Desteklenen MITRE ATT&CK Teknikleri & Vektörler
+
+| MITRE ID | Taktik (Tactic) | Teknik / Simülasyon Adı | Açıklama |
+|---|---|---|---|
+| **T1071.001** | Command and Control | Web Protocols: HTTPS Beaconing & Jitter | Düzensiz aralıklı (jitter) C2 trafiği |
+| **T1071.004** | Command and Control | DNS Tunneling Simulation | Base64 kodlanmış DNS alt alan sorguları |
+| **T1046** | Discovery | Network Service Discovery | SYN ve Port Taraması |
+| **T1095** | Command and Control | Non-Application Layer Protocol | TCP/ICMP tünel simülasyonu |
+| **T1021.001** | Lateral Movement | Remote Desktop Protocol (RDP) | RDP portu üzerinden lateral movement |
+| **T1021.002** | Lateral Movement | SMB/Windows Admin Shares | SMB portu üzerinden lateral movement |
+| **T1041** | Exfiltration | Exfiltration Over C2 Channel (Burst & Slow) | Hızlı veya 'Low & Slow' gizli veri aktarımı |
+| **T1562** | Defense Evasion | Impair Defenses: Baseline Poisoning | Düşük hacimli trafikle öğrenmeyi manipüle etme |
+| *Legacy* | Discovery | Nmap SYN Tarama | Ağ keşfi ve port taraması |
+| *Legacy* | Credential Access | SSH Brute Force | Başarısız oturum açma denemeleri |
+| *Legacy* | Initial Access / Discovery | Web App Tarama | Güvenlik payload ve path testleri |
+
+---
+
+## 📦 Kurulum
+
+Gerekli Python bağımlılıklarını yükleyin:
 
 ```bash
 pip install -r requirements.txt
 python main.py
 ```
 
-> **Not:** SYN taraması ve ARP/ICMP operasyonları için yönetici (root/admin) izinleri gerekebilir.
+> **Not:** SYN taramaları, ham soket (raw socket) veya ARP/ICMP operasyonları için yönetici (root/administrator) izinleri gerekebilir.
 
-##  Yapılandırma
+---
 
-`config.py` veya `main.py` içerisindeki `network_range` ve diğer parametreleri kendi test ağınıza göre özelleştirebilirsiniz:
+## ⚙️ Yapılandırma
+
+`config.py` veya `main.py` içerisinden ağ aralığını ve davranış parametrelerini özelleştirebilirsiniz:
 
 ```python
 from config import BotConfig
@@ -42,11 +53,17 @@ cfg = BotConfig(
 )
 ```
 
-##  Log Dosyaları
+---
 
-- `redteam_attacks.json` - Detaylı JSON formatında saldırı raporları
-- `redteam_attacks.log` - Konsol ve çalışma geçmişi logları
+## 📊 Raporlama ve Loglar
 
-##  Yasal Uyarı
+Her saldırı tamamlandığında MITRE ID ve taktik etiketleriyle detaylı şekilde loglanır:
 
-Bu araç yalnızca yetkili güvenlik testleri, eğitim ve laboratuvar ortamlarında ağ savunma mekanizmalarını doğrulamak amacıyla kullanılmalıdır. İzin alınmamış sistemlerde kullanılması yasal sorumluluk doğurabilir.
+- `redteam_attacks.json` - Her saldırının teknik bilgileri, hedef IP'leri, başlangıç/bitiş süreleri ve ham sonuçlarını içeren JSON kaydı
+- `redteam_attacks.log` - Konsol çıktısı ve çalışma geçmişi logları
+
+---
+
+## ⚠️ Yasal Uyarı
+
+Bu araç **yalnızca yetkili güvenlik testleri, eğitim ve savunma mekanizmalarını doğrulamak amacıyla** kullanılmalıdır. İzin alınmamış sistemlerde veya ağlarda kullanılması yasal sorumluluk doğurabilir.

@@ -6,6 +6,8 @@ from .lateral import LateralMovement
 from .dns_tunnel import DNSTunnel
 from .network import NetworkAttacks
 from .webscan import WebScan
+from .mitre_tactics import MITRETactics
 
-__all__ = ['Scanner','BruteForce','C2Beacon','Exfiltration',
-           'LateralMovement','DNSTunnel','NetworkAttacks','WebScan']
+__all__ = ['Scanner', 'BruteForce', 'C2Beacon', 'Exfiltration',
+           'LateralMovement', 'DNSTunnel', 'NetworkAttacks', 'WebScan',
+           'MITRETactics']
