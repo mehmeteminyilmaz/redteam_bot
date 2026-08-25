@@ -1,10 +1,10 @@
 ﻿# Red Team Bot - Zararsız Ağ Güvenlik Test Platformu
 
-## 🎯 Proje Açıklaması
+##  Proje Açıklaması
 
 Bu bot, ağ güvenlik sistemlerinin (SIEM, IDS/IPS, NDR vb.) anomali algılama yeteneğini test etmek için tasarlanmış zararsız bir Red Team simülasyon aracıdır.
 
-## 🚀 Saldırı Vektörleri
+##  Saldırı Vektörleri
 
 | # | Saldırı Türü | Açıklama |
 |---|-------------|----------|
@@ -19,7 +19,7 @@ Bu bot, ağ güvenlik sistemlerinin (SIEM, IDS/IPS, NDR vb.) anomali algılama y
 | 9 | ICMP Flood (Hafif) | Düşük hacimli ping flood |
 | 10 | Web App Tarama | Güvenlik payload testleri |
 
-## 📦 Kurulum
+##  Kurulum
 
 ```bash
 pip install -r requirements.txt
@@ -28,7 +28,7 @@ python main.py
 
 > **Not:** SYN taraması ve ARP/ICMP operasyonları için yönetici (root/admin) izinleri gerekebilir.
 
-## ⚙️ Yapılandırma
+##  Yapılandırma
 
 `config.py` veya `main.py` içerisindeki `network_range` ve diğer parametreleri kendi test ağınıza göre özelleştirebilirsiniz:
 
@@ -42,11 +42,11 @@ cfg = BotConfig(
 )
 ```
 
-## 📊 Log Dosyaları
+##  Log Dosyaları
 
 - `redteam_attacks.json` - Detaylı JSON formatında saldırı raporları
 - `redteam_attacks.log` - Konsol ve çalışma geçmişi logları
 
-## ⚠️ Yasal Uyarı
+##  Yasal Uyarı
 
 Bu araç yalnızca yetkili güvenlik testleri, eğitim ve laboratuvar ortamlarında ağ savunma mekanizmalarını doğrulamak amacıyla kullanılmalıdır. İzin alınmamış sistemlerde kullanılması yasal sorumluluk doğurabilir.
